@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <div className='d-flex flex-wrap justify-content-center align-items-center' style={{minHeight: '85vh'}}>
         <div className='text-center p-3 rounded-start'>
-            <img src={"https://dummyimage.com/512x512/ddd/000.png&text=Logo"} alt='pandavas-signin' style={{height: '150px'}} />
+            <img className="mx-auto" src={"https://dummyimage.com/512x512/ddd/000.png&text=Logo"} alt='pandavas-signin' style={{height: '150px'}} />
             <h1 className='display-3 text-primary'>Welcome Back!</h1>
             <p className='lead'><small>Enter your registered Email and Password for accesing your user account.</small></p>
         </div>
