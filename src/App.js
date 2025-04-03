@@ -10,6 +10,7 @@ import LoadingPage from './components/pages/Loading';
 import Home from './components/pages/Home';
 import CreatePatient from './components/pages/CreatePatient';
 import UpdatePatient from './components/pages/UpdatePatient';
+import BulkUpdatePatient from './components/pages/BulkUpdatePatient';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
         <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
         <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
+        <Route path='/bulk-update-patient' element={isAuth?<BulkUpdatePatient/> : <Login/>} />
       </Routes>
 
       <HeaderOffcanvas/>
