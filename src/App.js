@@ -9,6 +9,7 @@ import { DContext } from './context/Datacontext';
 import LoadingPage from './components/pages/Loading';
 import Home from './components/pages/Home';
 import CreatePatient from './components/pages/CreatePatient';
+import UpdatePatient from './components/pages/UpdatePatient';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={isAuth?<Home/>:<Login/>} />
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
         <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
+        <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
       </Routes>
 
       <HeaderOffcanvas/>
