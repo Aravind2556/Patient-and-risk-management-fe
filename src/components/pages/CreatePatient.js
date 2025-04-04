@@ -3,7 +3,8 @@ import { DContext } from '../../context/Datacontext';
 import BulkPatientCreate from '../blocks/BulkPatientCreate';
 
 const CreatePatient = () => {
-    const { BeURL} = useContext(DContext)
+    const { BeURL } = useContext(DContext)
+  
   const [formData, setFormData] = useState({
     fullName: '',
     age: '',
@@ -15,8 +16,6 @@ const CreatePatient = () => {
     systolic_bp : '',
     diastolic_bp : '',
     blood_sugar : ''
-
-
   });
 
 

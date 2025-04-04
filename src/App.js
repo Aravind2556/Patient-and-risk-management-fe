@@ -10,6 +10,8 @@ import LoadingPage from './components/pages/Loading';
 import Home from './components/pages/Home';
 import CreatePatient from './components/pages/CreatePatient';
 import UpdatePatient from './components/pages/UpdatePatient';
+import Test from './components/pages/Test';
+import PatientChart from './components/pages/PatientChart';
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
         <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
         <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
+        <Route path='/view-patient-chart/:id' element={<PatientChart/>}/>
+        <Route path='/test' element={<Test/>}/>
       </Routes>
 
       <HeaderOffcanvas/>
