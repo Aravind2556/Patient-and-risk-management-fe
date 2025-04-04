@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { DContext } from '../../context/Datacontext'
 
@@ -6,6 +6,15 @@ const PatientChart = () => {
 
   const {patient}=useContext(DContext)
   const {id}=useParams()
+
+  const [DiastolicBPChart,setDiastolicBPChart]=useState(null)
+  const [HeartRateChart,setlastHeartRateChart]=useState(null)
+  const [SystolicBPChart,setSystolicBPChart]=useState(null)
+  const [Spo2Chart,setSySpo2Chart]=useState(null)
+  const [TemperatureChart,setTemperatureChart]=useState(null)
+  const [BloodSugarChart,setBloodSugarChart]=useState(null)
+
+  console.log("multiple",DiastolicBPChart , HeartRateChart , SystolicBPChart , Spo2Chart , TemperatureChart , BloodSugarChart )
     
   const findPatient = patient && patient.fetchPatient.length > 0 ? patient.fetchPatient.find((item)=> item.patientid === id) : null
     
@@ -16,6 +25,57 @@ const PatientChart = () => {
   const lastSpo2 = findPatient && findPatient.spo2 ? [...findPatient.spo2].reverse()[0] : null;
   const latsTemperature = findPatient && findPatient.temperature ? [...findPatient.temperature].reverse()[0] : null
   const lastBloodSugar = findPatient && findPatient.blood_sugar ? [...findPatient.blood_sugar].reverse()[0] : null
+
+
+  const lastDiastolicBPChart = findPatient && findPatient.diastolic_bp ? [...findPatient.diastolic_bp].reverse() : null
+  const lastHeartRateChart = findPatient && findPatient.heart_rate ? [...findPatient.heart_rate].reverse() : null
+  const lastSystolicBPChart = findPatient && findPatient.systolic_bp ? [...findPatient.systolic_bp].reverse() : null
+  const lastSpo2Chart = findPatient && findPatient.spo2 ? [...findPatient.spo2].reverse() : null;
+  const latsTemperatureChart = findPatient && findPatient.temperature ? [...findPatient.temperature].reverse() : null
+  const lastBloodSugarChart = findPatient && findPatient.blood_sugar ? [...findPatient.blood_sugar].reverse() : null
+
+  const handleUpdatePatientData = () => {
+    if(!DiastolicBPChart){
+      setDiastolicBPChart(lastDiastolicBPChart)
+    }
+
+    if(!HeartRateChart){
+      setlastHeartRateChart(lastHeartRateChart)
+    }
+
+    if(!SystolicBPChart){
+      setSystolicBPChart(lastSystolicBPChart)
+
+    }
+    if(!Spo2Chart){
+      setSySpo2Chart(lastSpo2Chart)
+
+    }
+    if(!TemperatureChart){
+      setTemperatureChart(latsTemperatureChart)
+
+    }
+    if(!BloodSugarChart){
+      setBloodSugarChart(lastBloodSugarChart)
+     }
+  }
+
+  useEffect(() => {
+    handleUpdatePatientData(); // Initial call
+  
+    const interval = setInterval(() => {
+      handleUpdatePatientData(); // Call every 5 seconds
+    }, 5000);
+  
+   
+  });
+
+ 
+
+
+ 
+
+
 
 
 
