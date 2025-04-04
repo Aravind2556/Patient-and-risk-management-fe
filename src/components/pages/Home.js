@@ -132,6 +132,7 @@ function Home() {
               <th className="border p-2 text-center">ID</th>
               <th className="border p-2 text-center">Name</th>
               <th className="border p-2 text-center hidden sm:table-cell">Gender</th>
+              <th className="border p-2 text-center">Status</th>
               <th className="border p-2 text-center">Action</th>
             </tr>
           </thead>
@@ -143,6 +144,7 @@ function Home() {
                   <td className="border p-2 text-center">{p.patientid}</td>
                   <td className="border p-2 text-center">{p.fullname}</td>
                   <td className="border p-2 text-center hidden sm:table-cell">{p.gender}</td>
+                  <td className="border p-2 text-center">{p.riskLevel}</td>
                   <td className="border p-2 text-center">
                     <div className=" flex justify-center gap-3 items-center">
                       <button className="  text-green-600 " onClick={()=>handleView(p.patientid)}>
