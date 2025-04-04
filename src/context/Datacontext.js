@@ -54,32 +54,22 @@ const DataContext = ({children}) => {
         })
     }
 
-    const fetchPatient = async () => {
-        if (!patient) {
-            try {
-                const response = await fetch(`${BeURL}/fetch-patient`, {
-                    method: 'GET',
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-                if (!response.ok) throw new Error("Failed to fetch patient");
-                const data = await response.json();
-                setPatient(data);  // Assuming you have a state setter function
-            } catch (error) {
-                console.error("Error fetching patient:", error);
-            }
+    
+    useEffect(async() => {
+        try {
+            const response = await fetch(`${BeURL}/fetch-patient`, {
+                method: 'GET',
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            if (!response.ok) throw new Error("Failed to fetch patient");
+            const data = await response.json();
+            setPatient(data);  // Assuming you have a state setter function
+        } catch (error) {
+            console.error("Error fetching patient:", error);
         }
-    };
-    
-    useEffect(() => {
-        fetchPatient();
-        const interval = setInterval(() => {
-            fetchPatient();
-        }, 5000);
-    
-        return () => clearInterval(interval); // Cleanup function should return a function
     }, []);
 
 
