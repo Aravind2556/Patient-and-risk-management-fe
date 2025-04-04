@@ -1,8 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/blocks/Header';
 import './css/App.css';
 import Login from './components/pages/Login';
-import HeaderOffcanvas from './components/blocks/HeaderOffCanvas';
 import Register from './components/pages/Register';
 import { useContext } from 'react';
 import { DContext } from './context/Datacontext';
@@ -13,7 +11,7 @@ import UpdatePatient from './components/pages/UpdatePatient';
 import Test from './components/pages/Test';
 import PatientChart from './components/pages/PatientChart';
 import BulkUpdatePatient from './components/pages/BulkUpdatePatient';
-
+import Header from './components/blocks/Header'
 
 function App() {
 
@@ -28,6 +26,7 @@ function App() {
 
   return (
     <div className="container-fluid p-0">
+
       <Header/>
       
       <Routes>
@@ -44,7 +43,6 @@ function App() {
 
       </Routes>
 
-      <HeaderOffcanvas/>
     </div>
   );
 }
