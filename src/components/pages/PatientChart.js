@@ -30,13 +30,15 @@ const PatientChart = () => {
         <div>
             {
               findPatient && (
+               
                 <ul>
                 <li><strong>Patientid : </strong>{findPatient.patientid}</li>
                 <li><strong>Fullname  : </strong>{findPatient.fullname}</li>
                 <li><strong>Age       : </strong>{findPatient.age}</li>
                 <li><strong>Contact : </strong>{findPatient.contact}</li>
                 <li><strong>Gender : </strong>{findPatient.gender}</li>
-                <li><strong>Patientid : </strong>{findPatient.patientid}</li>
+                <li><strong>Status : </strong><span  className={`${findPatient.riskLevel === 'Severe' ? "text-red-600 font-bold" : "text-green-600"}`}>{findPatient.riskLevel}</span></li>
+
                 </ul>
 
               )  
