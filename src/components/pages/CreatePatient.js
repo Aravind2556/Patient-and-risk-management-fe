@@ -93,7 +93,7 @@ const CreatePatient = () => {
         </div>
         <div className='flex flex-wrap justify-between items-center gap-2'>
           <div className='w-[100%] sm:w-[48%]'>
-            <label className="block text-gray-700">Temperature:</label>
+            <label className="block text-gray-700">Temperature: (in Celcius)</label>
             <input type="text" name="temperature" value={formData.temperature} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
           <div className='w-[100%] sm:w-[48%]'>
