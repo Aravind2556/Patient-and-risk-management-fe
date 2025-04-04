@@ -6,4 +6,4 @@ function UpdatePatient() {
   )
 }
 
-export default UpdatePatient
+export default UpdatePatient     

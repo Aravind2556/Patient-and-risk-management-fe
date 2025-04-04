@@ -10,8 +10,12 @@ import LoadingPage from './components/pages/Loading';
 import Home from './components/pages/Home';
 import CreatePatient from './components/pages/CreatePatient';
 import UpdatePatient from './components/pages/UpdatePatient';
+<<<<<<< HEAD
 import Test from './components/pages/Test';
 import PatientChart from './components/pages/PatientChart';
+=======
+import BulkUpdatePatient from './components/pages/BulkUpdatePatient';
+>>>>>>> 227ef8972998341ac2954883da223593f54906e6
 
 function App() {
 
@@ -34,8 +38,12 @@ function App() {
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
         <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
         <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
+<<<<<<< HEAD
         <Route path='/view-patient-chart/:id' element={<PatientChart/>}/>
         <Route path='/test' element={<Test/>}/>
+=======
+        <Route path='/bulk-update-patient' element={isAuth?<BulkUpdatePatient/> : <Login/>} />
+>>>>>>> 227ef8972998341ac2954883da223593f54906e6
       </Routes>
 
       <HeaderOffcanvas/>
