@@ -4,6 +4,7 @@ import { FaEye, FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 
 function Home() {
+  const BeURL = process.env.REACT_APP_BeURL
   const { patient } = useContext(DContext);
   
 
@@ -35,7 +36,29 @@ function Home() {
 
   }
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
+
+    
+    fetch(`${BeURL}/delete-patient/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.message);
+        if(data.success){
+          window.location.reload()
+        }
+        
+      })
+      .catch((err) => {
+        console.error("Error deleting patient:", err);
+        alert("An error occurred while deleting the patient.");
+      });
+    
 
   }
 

@@ -65,7 +65,7 @@ const CreatePatient = () => {
       <p className='my-3 text-center'>(or)</p>
 
       <form onSubmit={handleSubmit} className="space-y-2">
-      <h3 className='text-left font-bold text-xl text-primary-400'>2) Create single patient</h3>
+      <h3 className='text-left font-bold text-xl text-primary-400'>2 Create single patient</h3>
         <div className='flex flex-wrap justify-between items-center gap-2'>
           <div className='w-[100%] sm:w-[48%]'>
             <label className="block text-gray-700">Full Name:</label>
