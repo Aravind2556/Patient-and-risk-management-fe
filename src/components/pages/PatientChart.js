@@ -114,13 +114,13 @@ const PatientChart = () => {
   }
 
  return (
-  <div className=" flex justify-center">
-    <div className="grid justify-center  w-8/12 ">
+  <div className=" flex justify-center px-20">
+    <div className="grid justify-center md:w-8/12">
      <h2 className="font-bold text-2xl text-center underline text-primary-400">Consult Record</h2>
 
      <div className=" grid justify-center gap-5 mt-10">
         <div className="grid justify-center gap-2">
-            <div className="w-[800px] border px-2 py-2 rounded">
+            <div className="w-[400px] md:w-[800px] border px-2 py-2 rounded">
               <h2 className="font-bold text-xl underline text-primary-500 ">Patient Monitoring live chart</h2>
 
               <Chart options={chartOptions} series={chartSeries} type="line" height={350} />
@@ -130,7 +130,7 @@ const PatientChart = () => {
 
 
         </div>
-        <div className=" flex gap-1">
+        <div className="gird gap-2 md:flex md:gap-1">
         <div className=" px-4 py-4 border-2 rounded min-h-[300px] w-[400px] h-auto grid justify-center">
         <p className=" text-2xl underline text-primary-500 ">Patient Details</p>
             {

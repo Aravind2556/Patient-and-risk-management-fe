@@ -30,13 +30,13 @@ function App() {
       <Header/>
       
       <Routes>
-        <Route path="/" element={isAuth?(currentUser?.role === 'admin' ? <Home/>:<Login/>) : <Login/>} />
+        <Route path="/" element={isAuth? <Home/>:<Login/>} />
         <Route path="/login" element={isAuth?<Home/>:<Login/>} />
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
         <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
         <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
 
-        <Route path='/view-patient-chart/:id' element={<PatientChart/>}/>
+        <Route path='/view-patient-chart/:id' element={isAuth?<PatientChart/> : <Login/>}/>
         <Route path='/test' element={<Test/>}/>
 
         <Route path='/bulk-update-patient' element={isAuth?<BulkUpdatePatient/> : <Login/>} />
