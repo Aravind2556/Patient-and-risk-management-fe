@@ -6,13 +6,30 @@ import { AiFillDelete } from "react-icons/ai";
 function Home() {
   const BeURL = process.env.REACT_APP_BeURL
   const { patient , isAuth, currentUser } = useContext(DContext);
-  
+  const statusOrder = ["critical", "severe", "medium", "normal"]
 
   const [startingIndex, setStartingIndex] = useState(0);
   const [endingIndex, setEndingIndex] = useState(10);
   const [itemlist, setItemlist] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortedPatients, setSortedPatients] = useState(null);
+
+  useEffect(()=>{
+    if(patient && patient.fetchPatient && patient.fetchPatient.length > 0 && Array.isArray(patient.fetchPatient)){
+      const sortedPatients = patient.fetchPatient.sort((a, b) => {
+        const statusA = statusOrder.indexOf(a.riskLevel.toLowerCase());
+        const statusB = statusOrder.indexOf(b.riskLevel.toLowerCase());
+        return statusA - statusB;
+      })
+      setSortedPatients(sortedPatients);
+    }
+    else{
+      setSortedPatients([]);
+    }
+  },[patient])
+
+  console.log("sortedPatients", sortedPatients)
 
   if(patient && patient.fetchPatient && patient.fetchPatient[0]){
     
@@ -20,8 +37,8 @@ function Home() {
   }
 
   useEffect(() => {
-    if (searchQuery!=="" && patient && patient.fetchPatient) {
-      const filteredPatients = patient.fetchPatient.filter((p) =>{
+    if (searchQuery!=="" && sortedPatients && sortedPatients.length > 0 ) {
+      const filteredPatients = sortedPatients.filter((p) =>{
         if(p.fullname.toLowerCase().includes(searchQuery.toLowerCase())) return true;
         if(p.patientid.toLowerCase().includes(searchQuery.toLowerCase())) return true;
         if(p.gender.toLowerCase().includes(searchQuery.toLowerCase())) return true;
@@ -31,19 +48,19 @@ function Home() {
       });
       setItemlist(filteredPatients.slice(startingIndex, endingIndex));
     }
-    else if (patient && patient.fetchPatient) {
-      setItemlist(patient.fetchPatient.slice(startingIndex, endingIndex));
+    else if (sortedPatients && sortedPatients.length > 0) {
+      setItemlist(sortedPatients.slice(startingIndex, endingIndex));
     }
     else {
       setItemlist([]);
     }
-  }, [searchQuery, patient])
+  }, [searchQuery, sortedPatients])
 
   useEffect(() => {
-    if (patient && patient.fetchPatient) {
-      setItemlist(patient.fetchPatient.slice(startingIndex, endingIndex));
+    if (sortedPatients && sortedPatients.length > 0) {
+      setItemlist(sortedPatients.slice(startingIndex, endingIndex));
     }
-  }, [patient, startingIndex, endingIndex]);
+  }, [sortedPatients, startingIndex, endingIndex]);
 
   const handleMove = (move) => {
     if (!patient || !patient.fetchPatient) return;
@@ -107,6 +124,27 @@ function Home() {
     return fetchPatient+1||0
   }
 
+  const handleRecordRender = (patient) => {
+    console.log("patient", patient);
+
+// blood_sugar : [65]
+// diastolic_bp : [65]
+// heart_rate : [98]
+// spo2 : [65]
+// systolic_bp : [54]
+// temperature : [65]
+
+    const bloodSugar = patient.blood_sugar.slice(-1)[0] || 0;
+    const diastolicBP = patient.diastolic_bp.slice(-1)[0] || 0;
+    const heartRate = patient.heart_rate.slice(-1)[0] || 0;
+    const spo2 = patient.spo2.slice(-1)[0] || 0;
+    const systolicBP = patient.systolic_bp.slice(-1)[0] || 0;
+    const temperature = patient.temperature.slice(-1)[0] || 0;
+
+    // return `${systolicBP}/${diastolicBP} mmHg, ${bloodSugar} mg/dL, ${heartRate} bpm, ${spo2}%, ${temperature}°C`;
+    return `${systolicBP}/${diastolicBP}, ${bloodSugar}, ${heartRate}, ${spo2}, ${temperature}`;
+  }
+
   return (
     <div className="flex flex-col justify-center px-2">
       
@@ -132,6 +170,7 @@ function Home() {
               <th className="border p-2 text-center">ID</th>
               <th className="border p-2 text-center">Name</th>
               <th className="border p-2 text-center hidden sm:table-cell">Gender</th>
+              <th className="border p-2 text-center hidden sm:table-cell">Record (BP, Sugar, spo2, <sup>o</sup>C)</th>
               <th className="border p-2 text-center">Status</th>
               <th className="border p-2 text-center">Action</th>
             </tr>
@@ -144,16 +183,17 @@ function Home() {
                   <td className="border p-2 text-center">{p.patientid}</td>
                   <td className="border p-2 text-center">{p.fullname}</td>
                   <td className="border p-2 text-center hidden sm:table-cell">{p.gender}</td>
-                  <td className="border p-2 text-center">{p.riskLevel}</td>
+                  <td className="border p-2 text-center hidden sm:table-cell">{handleRecordRender(p)}</td>
+                  <td className={`border p-2 text-center font-medium ${p.riskLevel==="Critical"&&'text-[#e53935]'} ${p.riskLevel==="Severe"&&'text-[#ffb300]'} ${p.riskLevel==="Medium"&&'text-[#64b5f6]'} ${p.riskLevel==="Normal"&&'text-[#26a69a]'}`}>{p.riskLevel}</td>
                   <td className="border p-2 text-center">
                     <div className=" flex justify-center gap-3 items-center">
-                      <button className="  text-green-600 " onClick={()=>handleView(p.patientid)}>
+                      <button className="  text-slate-600 " onClick={()=>handleView(p.patientid)}>
                         <FaEye />
                       </button>
-                      <button className=" text-blue-600" onClick={()=>handleEdit(p.patientid)}>
+                      <button className=" text-slate-600" onClick={()=>handleEdit(p.patientid)}>
                         <FaEdit />
                       </button>
-                      <button className="text-red-600 " onClick={()=>handleDelete(p.patientid)}>
+                      <button className="text-slate-600 " onClick={()=>handleDelete(p.patientid)}>
                         <AiFillDelete />
                       </button>
                     </div>
