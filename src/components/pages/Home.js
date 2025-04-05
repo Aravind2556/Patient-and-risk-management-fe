@@ -204,7 +204,7 @@ function Home() {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="border px-4 py-2 text-center">
+                <td colSpan="7" className="border px-4 py-2 text-center">
                   No patients found
                 </td>
               </tr>
