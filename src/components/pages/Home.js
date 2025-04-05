@@ -5,7 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 function Home() {
   const BeURL = process.env.REACT_APP_BeURL
-  const { patient } = useContext(DContext);
+  const { patient , isAuth, currentUser } = useContext(DContext);
   
 
   const [startingIndex, setStartingIndex] = useState(0);

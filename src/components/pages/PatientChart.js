@@ -75,7 +75,7 @@ const PatientChart = () => {
     },
     colors : ['red','blue','orange','#5e32a8','#a832a6','green'],
     xaxis : {
-      categories : DiastolicBPChart
+      categories : 0
     },
   }
 
@@ -113,17 +113,7 @@ const PatientChart = () => {
     return <div>Loading....</div>
   }
 
- 
-
-
- 
-
-
-
-
-
-
-return (
+ return (
   <div className=" flex justify-center">
     <div className="grid justify-center  w-8/12 ">
      <h2 className="font-bold text-2xl text-center underline text-primary-400">Consult Record</h2>
@@ -140,7 +130,7 @@ return (
 
 
         </div>
-        <div className=" flex">
+        <div className=" flex gap-1">
         <div className=" px-4 py-4 border-2 rounded min-h-[300px] w-[400px] h-auto grid justify-center">
         <p className=" text-2xl underline text-primary-500 ">Patient Details</p>
             {
