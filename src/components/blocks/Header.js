@@ -39,7 +39,7 @@ const callsToAction = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const {isAuth, handleLogout} = useContext(DContext)
+  const {isAuth, currentUser , handleLogout} = useContext(DContext)
 
   return (
     <header className="bg-white w-100">
@@ -70,14 +70,14 @@ export default function Example() {
           <a href="/" className="text-sm/6 font-semibold text-gray-900">
             Dashboard
           </a>
-          <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
-            Create Patients
+         <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
+           {isAuth? (currentUser?.role === 'admin' ? 'Create Patients' : '') : ""}
           </a>
           <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
-            Bulk Create Patients
+            {isAuth? (currentUser?.role === 'admin' ? 'Bulk Create Patients' : '') : ""}
           </a>
           <a href="/bulk-update-patient" className="text-sm/6 font-semibold text-gray-900">
-            Bulk Update Patients
+            {isAuth? (currentUser?.role === 'admin' ? 'Bulk Update Patients' : '') : ""}
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

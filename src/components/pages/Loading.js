@@ -2,7 +2,7 @@ import React from "react";
 
 const LoadingPage = () => {
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ height: "90vh" }}>
+    <div className="d-flex align-items-center justify-content-center h-[90vh]">
       <div className="text-center">
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Loading...</span>
