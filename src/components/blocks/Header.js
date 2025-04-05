@@ -46,8 +46,8 @@ export default function Example() {
       <nav aria-label="Global" className="w-100 flex items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <h1 className='font-bold text-primary-400 text-xl'>Patient Monitoring <sup>by ML</sup></h1>
+            <span className="sr-only">Patient Monitoring <sup>by ML</sup></span>
+            <h1 className='font-bold text-primary-400  text-md lg:text-lg'>Patient Monitoring <sup>by ML</sup></h1>
             {/* <img
               alt="App Logo"
               src={Logo}
@@ -92,8 +92,8 @@ export default function Example() {
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <h1 className='font-bold text-primary-400 text-xl'>Patient Monitoring <sup>by ML</sup></h1>
+              <span className="sr-only">Patient Monitoring <sup>by ML</sup></span>
+              <h1 className='font-bold text-primary-400 text-md lg:text-lg'>Patient Monitoring <sup>by ML</sup></h1>
               {/* <img
                 alt=""
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
