@@ -107,6 +107,17 @@ const PatientChart = () => {
     }
   ]
 
+  const renderChart = () => {
+    if(!DiastolicBPChart || !HeartRateChart || !SystolicBPChart || !Spo2Chart || !TemperatureChart || !BloodSugarChart){
+      return false
+    }
+    else if(DiastolicBPChart.length > 1 || HeartRateChart.length > 1 || SystolicBPChart.length > 1 || Spo2Chart.length > 1 || TemperatureChart.length > 1 || BloodSugarChart.length > 1){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 
 
   if(!DiastolicBPChart || !HeartRateChart || !SystolicBPChart || !Spo2Chart || !TemperatureChart || !BloodSugarChart){
@@ -119,7 +130,7 @@ const PatientChart = () => {
      <h2 className="font-bold text-2xl text-center underline text-primary-400">Consult Record</h2>
 
      <div className=" grid justify-center gap-5 mt-10">
-        <div className="grid justify-center gap-2">
+        {renderChart() && <div className="grid justify-center gap-2">
             <div className="w-[400px] md:w-[800px] border px-2 py-2 rounded">
               <h2 className="font-bold text-xl underline text-primary-500 ">Patient Monitoring live chart</h2>
 
@@ -129,37 +140,36 @@ const PatientChart = () => {
             </div>
 
 
-        </div>
-        <div className="gird gap-2 md:flex md:gap-1">
-        <div className=" px-4 py-4 border-2 rounded min-h-[300px] w-[400px] h-auto grid justify-center">
-        <p className=" text-2xl underline text-primary-500 ">Patient Details</p>
-            {
-              findPatient && (
-              <ul>
-                <li><strong>Patientid : </strong>{findPatient.patientid}</li>
-                <li><strong>Fullname  : </strong>{findPatient.fullname}</li>
-                <li><strong>Age       : </strong>{findPatient.age}</li>
-                <li><strong>Contact : </strong>{findPatient.contact}</li>
-                <li><strong>Gender : </strong>{findPatient.gender}</li>
-                <li><strong>Status : </strong><span  className={`${findPatient.riskLevel === 'Severe' ? "text-red-600 font-bold" : "text-green-600"}`}>{findPatient.riskLevel}</span></li>
+        </div>}
+        <div className="flex gap-5 justify-center items-top">
+          <div className=" px-4 py-4 border-2 rounded min-h-[200px] w-[400px]">
+          <p className=" text-2xl underline text-primary-500 text-center ">Patient Details</p>
+              {
+                findPatient && (
+                <ul className='mx-auto w-fit my-3'>
+                  <li><strong>Patientid : </strong>{findPatient.patientid}</li>
+                  <li><strong>Fullname  : </strong>{findPatient.fullname}</li>
+                  <li><strong>Age       : </strong>{findPatient.age}</li>
+                  <li><strong>Contact : </strong>{findPatient.contact}</li>
+                  <li><strong>Gender : </strong>{findPatient.gender}</li>
+                  <li><strong>Status : </strong><span  className={`${findPatient.riskLevel === 'Severe' ? "text-red-600 font-bold" : "text-green-600"}`}>{findPatient.riskLevel}</span></li>
+                  </ul>
+                
+                  )  
+              }
+          </div>
+
+          <div className="border-2 rounded px-4 py-4 min-h-[200px] w-[400px]">
+                <h2 className="text-primary-500 underline text-2xl text-center">Recent Reading</h2>
+                <ul className='mx-auto w-fit my-3'>
+                  <li><strong>Blood Pressure(BP) : </strong><span>{lastSystolicBP+'/ '+lastDiastolicBP}</span></li>
+                  <li><strong>Heart Rate : </strong><span>{lastHeartRate}</span></li>
+                  <li><strong>SpO<sub>2</sub> : </strong><span>{lastSpo2}</span></li>
+                  <li><strong>Temperature <sup>o</sup>C : </strong><span>{latsTemperature}</span></li>
+                  <li><strong>Blood Sugar : </strong><span>{lastBloodSugar}</span></li>
                 </ul>
-               
-                )  
-            }
-        </div>
 
-        <div className="  h-20  border-2 rounded px-4 py-4 grid justify-center w-[400px] min-h-[300px]">
-              <h2 className="text-primary-500 underline text-2xl">Recent Reading</h2>
-              <ul>
-              <li><strong>Blood Pressure(BP) : </strong><span>{lastSystolicBP+'/ '+lastDiastolicBP}</span></li>
-              <li><strong>Heart Rate : </strong><span>{lastHeartRate}</span></li>
-              <li><strong>SpO<sub>2</sub> : </strong><span>{lastSpo2}</span></li>
-              <li><strong>Temperature <sup>o</sup>C : </strong><span>{latsTemperature}</span></li>
-              <li><strong>Blood Sugar : </strong><span>{lastBloodSugar}</span></li>
-
-              </ul>
-
-        </div>
+          </div>
         </div>
 
 

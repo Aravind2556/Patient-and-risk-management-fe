@@ -5,7 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 function Home() {
   const BeURL = process.env.REACT_APP_BeURL
-  const { patient , isAuth, currentUser } = useContext(DContext);
+  const { patient , currentUser } = useContext(DContext);
   const statusOrder = ["critical", "severe", "medium", "normal"]
 
   const [startingIndex, setStartingIndex] = useState(0);
@@ -190,12 +190,14 @@ function Home() {
                       <button className="  text-slate-600 " onClick={()=>handleView(p.patientid)}>
                         <FaEye />
                       </button>
+                      {currentUser?.role==="admin"&&
                       <button className=" text-slate-600" onClick={()=>handleEdit(p.patientid)}>
                         <FaEdit />
-                      </button>
+                      </button>}
+                      {currentUser?.role==="admin"&&
                       <button className="text-slate-600 " onClick={()=>handleDelete(p.patientid)}>
                         <AiFillDelete />
-                      </button>
+                      </button>}
                     </div>
                   </td>
                 </tr>

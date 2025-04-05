@@ -8,10 +8,10 @@ import LoadingPage from './components/pages/Loading';
 import Home from './components/pages/Home';
 import CreatePatient from './components/pages/CreatePatient';
 import UpdatePatient from './components/pages/UpdatePatient';
-import Test from './components/pages/Test';
 import PatientChart from './components/pages/PatientChart';
 import BulkUpdatePatient from './components/pages/BulkUpdatePatient';
 import Header from './components/blocks/Header'
+import AccessDenied from './components/pages/AccessDenied';
 
 function App() {
 
@@ -33,13 +33,10 @@ function App() {
         <Route path="/" element={isAuth? <Home/>:<Login/>} />
         <Route path="/login" element={isAuth?<Home/>:<Login/>} />
         <Route path='/register' element={isAuth?<Home/>:<Register/>} />
-        <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <Login/>) : <Login/>}/>
-        <Route path='/update-patient/:id' element={isAuth?<UpdatePatient/> : <Login/>} />
-
+        <Route path='/createPatient' element={isAuth?(currentUser?.role === 'admin' ? <CreatePatient/> : <AccessDenied/>) : <Login/>}/>
+        <Route path='/update-patient/:id' element={isAuth?(currentUser?.role === 'admin' ? <UpdatePatient/> : <AccessDenied/>) : <Login/>} />
         <Route path='/view-patient-chart/:id' element={isAuth?<PatientChart/> : <Login/>}/>
-        <Route path='/test' element={<Test/>}/>
-
-        <Route path='/bulk-update-patient' element={isAuth?<BulkUpdatePatient/> : <Login/>} />
+        <Route path='/bulk-update-patient' element={isAuth?(currentUser?.role === 'admin' ? <BulkUpdatePatient/> : <AccessDenied/>) : <Login/>} />
 
       </Routes>
 

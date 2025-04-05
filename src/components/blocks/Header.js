@@ -45,7 +45,7 @@ export default function Example() {
     <header className="bg-white w-100">
       <nav aria-label="Global" className="w-100 flex items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Patient Monitoring <sup>by ML</sup></span>
             <h1 className='font-bold text-primary-400  text-md lg:text-lg'>Patient Monitoring <sup>by ML</sup></h1>
             {/* <img
@@ -70,15 +70,12 @@ export default function Example() {
           <a href="/" className="text-sm/6 font-semibold text-gray-900">
             Dashboard
           </a>
-         <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
-           {isAuth? (currentUser?.role === 'admin' ? 'Create Patients' : '') : ""}
-          </a>
-          <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
-            {isAuth? (currentUser?.role === 'admin' ? 'Bulk Create Patients' : '') : ""}
-          </a>
-          <a href="/bulk-update-patient" className="text-sm/6 font-semibold text-gray-900">
-            {isAuth? (currentUser?.role === 'admin' ? 'Bulk Update Patients' : '') : ""}
-          </a>
+          {(isAuth && currentUser?.role === 'admin') && <a href="/createPatient" className="text-sm/6 font-semibold text-gray-900">
+            Create Patients
+          </a>}
+          {(isAuth && currentUser?.role === 'admin') && <a href="/bulk-update-patient" className="text-sm/6 font-semibold text-gray-900">
+            Bulk Update Patients
+          </a>}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {
@@ -91,7 +88,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Patient Monitoring <sup>by ML</sup></span>
               <h1 className='font-bold text-primary-400 text-md lg:text-lg'>Patient Monitoring <sup>by ML</sup></h1>
               {/* <img
@@ -118,24 +115,20 @@ export default function Example() {
                 >
                   Dashboard
                 </a>
+                {(isAuth && currentUser?.role === 'admin') && 
                 <a
                   href="/createPatient"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  Create Patients
-                </a>
-                <a
-                  href="/createPatient"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                >
-                  Bulk Create Patients
-                </a>
+                  Create Patient
+                </a>}
+                {(isAuth && currentUser?.role === 'admin') && 
                 <a
                   href="/bulk-update-patient"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   Bulk Update Patients
-                </a>
+                </a>}
               </div>
               <div className="py-6">
                 {
