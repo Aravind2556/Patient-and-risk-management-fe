@@ -97,7 +97,7 @@ const CreatePatient = () => {
             <input type="text" name="temperature" value={formData.temperature} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
           <div className='w-[100%] sm:w-[48%]'>
-            <label className="block text-gray-700">Heatrate:</label>
+            <label className="block text-gray-700">Heart rate:</label>
             <input type="text" name="heart_rate" value={formData.heart_rate} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
         </div>
@@ -107,13 +107,13 @@ const CreatePatient = () => {
             <input type="text" name="spo2" value={formData.spo2} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
           <div className='w-[100%] sm:w-[48%]'>
-            <label className="block text-gray-700">SystolicBP:</label>
+            <label className="block text-gray-700">Systolic BP:</label>
             <input type="text" name="systolic_bp" value={formData.systolic_bp} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
         </div>
         <div className='flex flex-wrap justify-between items-center gap-2'>
           <div className='w-[100%] sm:w-[48%]'>
-            <label className="block text-gray-700">DiastolicBP:</label>
+            <label className="block text-gray-700">Diastolic BP:</label>
             <input type="text" name="diastolic_bp" value={formData.diastolic_bp} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded mt-1" />
           </div>
           <div className='w-[100%] sm:w-[48%]'>
