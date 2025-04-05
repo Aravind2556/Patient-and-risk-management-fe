@@ -184,7 +184,8 @@ function Home() {
                   <td className="border p-2 text-center">{p.fullname}</td>
                   <td className="border p-2 text-center hidden sm:table-cell">{p.gender}</td>
                   <td className="border p-2 text-center hidden sm:table-cell">{handleRecordRender(p)}</td>
-                  <td className={`border p-2 text-center font-medium ${p.riskLevel==="Critical"&&'text-[#e53935]'} ${p.riskLevel==="Severe"&&'text-[#ffb300]'} ${p.riskLevel==="Medium"&&'text-[#64b5f6]'} ${p.riskLevel==="Normal"&&'text-[#26a69a]'}`}>{p.riskLevel}</td>
+                  {/* <td className={`border p-2 text-center font-medium ${p.riskLevel==="Critical"&&'text-[#e53935]'} ${p.riskLevel==="Severe"&&'text-[#ffb300]'} ${p.riskLevel==="Medium"&&'text-[#64b5f6]'} ${p.riskLevel==="Normal"&&'text-[#26a69a]'}`}>{p.riskLevel}</td> */}
+                  <td className={`border p-2 text-center font-medium ${p.riskLevel==="Critical"&&'text-red-600'} ${p.riskLevel==="Severe"&&'text-amber-400'} ${p.riskLevel==="Medium"&&'text-sky-500'} ${p.riskLevel==="Normal"&&'text-green-500'}`}>{p.riskLevel}</td>
                   <td className="border p-2 text-center">
                     <div className=" flex justify-center gap-3 items-center">
                       <button className="  text-slate-600 " onClick={()=>handleView(p.patientid)}>

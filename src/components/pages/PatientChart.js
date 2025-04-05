@@ -152,7 +152,7 @@ const PatientChart = () => {
                   <li><strong>Age       : </strong>{findPatient.age}</li>
                   <li><strong>Contact : </strong>{findPatient.contact}</li>
                   <li><strong>Gender : </strong>{findPatient.gender}</li>
-                  <li><strong>Status : </strong><span  className={`${findPatient.riskLevel === 'Severe' ? "text-red-600 font-bold" : "text-green-600"}`}>{findPatient.riskLevel}</span></li>
+                  <li><strong>Status : </strong><span  className={`font-medium text-white px-2 rounded-md ${findPatient.riskLevel==="Critical"&&'bg-red-600'} ${findPatient.riskLevel==="Severe"&&'bg-amber-400'} ${findPatient.riskLevel==="Medium"&&'bg-sky-500'} ${findPatient.riskLevel==="Normal"&&'bg-green-500'}`}>{findPatient.riskLevel}</span></li>
                   </ul>
                 
                   )  
