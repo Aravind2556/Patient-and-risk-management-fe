@@ -17,6 +17,7 @@ const CreatePatient = () => {
     diastolic_bp : '',
     blood_sugar : ''
   });
+  const [loading, setLoading] = useState(false);
 
 
   const handleChange = (e) => {
@@ -24,6 +25,7 @@ const CreatePatient = () => {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true)
     e.preventDefault();
     console.log('Patient Data:', formData);
 
@@ -40,17 +42,20 @@ const CreatePatient = () => {
         })
         .then(res=>res.json())
         .then(data=>{
+          setLoading(false)
           alert(data.message)
           if(data.success){
             window.location.href="/"
           }
         })
         .catch(err=>{
+          setLoading(false)
             alert('Trouble in connecting to the Server! Please try again later.')
             console.log('Error in Login:',err)
         })
     }
     else{
+      setLoading(false)
         alert("All fields are required!")
     }
     
@@ -122,7 +127,7 @@ const CreatePatient = () => {
           </div>
         </div>
 
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">Create Patient</button>
+        <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition" disabled={loading}>{loading?'Creating...':'Create Patient'}</button>
       </form>
     </div>
   );
