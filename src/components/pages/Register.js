@@ -74,7 +74,7 @@ const Register = () => {
             <form>
             <div className="mb-3">
                 <label htmlFor="InputName" className="block text-sm/6 font-medium text-gray-900">Full Name</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} required type="text" className="p-2 rounded-2 border-[1px] rounded border-slate-400 focus:outline-secondary-500 my-2 w-full" id="InputName" placeholder="Subhin Krishna"/>
+                <input value={name} onChange={(e) => setName(e.target.value)} required type="text" className="p-2 rounded-2 border-[1px] rounded border-slate-400 focus:outline-secondary-500 my-2 w-full" id="InputName" placeholder="Your name"/>
             </div>
             <div className="mb-3">
                 <label htmlFor="InputContact" className="block text-sm/6 font-medium text-gray-900">Contact</label>
